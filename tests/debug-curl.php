@@ -15,7 +15,7 @@ $message = $apiKey . '_' . $clientId . '_' . $timestamp . '_' . $secretKey;
 $signature = base64_encode(hash('sha256', $message, true));
 
 echo "=== Equivalent cURL command ===\n\n";
-echo "curl -X GET 'https://rest-api-stage.puzzlerdigital.uk/api/Puzzle/dictionary' \\\n";
+echo "curl -X GET 'https://rest-api.puzzlerdigital.uk/api/Puzzle/dictionary' \\\n";
 echo "  -H 'X-Signature: " . $signature . "' \\\n";
 echo "  -H 'X-Timestamp: " . $timestamp . "' \\\n";
 echo "  -H 'X-Client-Id: " . $clientId . "' \\\n";

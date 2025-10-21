@@ -25,7 +25,7 @@ class CredentialsTest extends TestCase
         $clientId = getenv('PUZZLER_CLIENT_ID');
         $apiKey = getenv('PUZZLER_API_KEY');
         $secretKey = getenv('PUZZLER_SECRET_KEY');
-        $baseUrl = getenv('PUZZLER_BASE_URL') ?: 'https://rest-api-stage.puzzlerdigital.uk';
+        $baseUrl = getenv('PUZZLER_BASE_URL') ?: 'https://rest-api.puzzlerdigital.uk';
 
         if (empty($clientId) || empty($apiKey) || empty($secretKey)) {
             $this->markTestSkipped('Puzzler API credentials not configured. Set PUZZLER_CLIENT_ID, PUZZLER_API_KEY, and PUZZLER_SECRET_KEY environment variables.');

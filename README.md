@@ -64,7 +64,7 @@ $client = new PuzzlerClient(
     'YOUR_CLIENT_ID',      // X-Client-Id
     'YOUR_API_KEY',        // X-Api-Key
     'YOUR_SECRET_KEY',     // Secret Key
-    'https://rest-api-stage.puzzlerdigital.uk' // Optional: Base URL
+    'https://rest-api.puzzlerdigital.uk' // Optional: Base URL
 );
 ```
 
@@ -187,7 +187,7 @@ public function __construct(
     string $clientId,
     string $apiKey,
     string $secretKey,
-    string $baseUrl = 'https://rest-api-stage.puzzlerdigital.uk'
+    string $baseUrl = 'https://rest-api.puzzlerdigital.uk'
 )
 ```
 
@@ -256,7 +256,7 @@ cp .env.example .env
 PUZZLER_CLIENT_ID=your_client_id_here
 PUZZLER_API_KEY=your_api_key_here
 PUZZLER_SECRET_KEY=your_secret_key_here
-PUZZLER_BASE_URL=https://rest-api-stage.puzzlerdigital.uk
+PUZZLER_BASE_URL=https://rest-api.puzzlerdigital.uk
 ```
 
 3. Load environment variables:

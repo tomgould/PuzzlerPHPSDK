@@ -44,26 +44,26 @@ class PuzzleClient
      */
     public function collect(array $filters = [])
     {
-        $body = ['model' => []];
+        $body = [];
 
         if (isset($filters['puzzleDate'])) {
-            $body['model']['puzzleDate'] = $filters['puzzleDate'];
+            $body['puzzleDate'] = $filters['puzzleDate'];
         }
 
         if (isset($filters['puzzleDateFrom'])) {
-            $body['model']['puzzleDateFrom'] = $filters['puzzleDateFrom'];
+            $body['puzzleDateFrom'] = $filters['puzzleDateFrom'];
         }
 
         if (isset($filters['puzzleDateTo'])) {
-            $body['model']['puzzleDateTo'] = $filters['puzzleDateTo'];
+            $body['puzzleDateTo'] = $filters['puzzleDateTo'];
         }
 
         if (isset($filters['puzzleTypes']) && is_array($filters['puzzleTypes'])) {
-            $body['model']['puzzleTypes'] = $filters['puzzleTypes'];
+            $body['puzzleTypes'] = $filters['puzzleTypes'];
         }
 
         if (isset($filters['puzzleNames']) && is_array($filters['puzzleNames'])) {
-            $body['model']['puzzleNames'] = $filters['puzzleNames'];
+            $body['puzzleNames'] = $filters['puzzleNames'];
         }
 
         return $this->httpClient->post('/api/Puzzle/collect', $body);

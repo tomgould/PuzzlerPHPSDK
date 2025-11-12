@@ -44,29 +44,38 @@ class PuzzleClient
      */
     public function collect(array $filters = [])
     {
-        $body = [];
+        $model = [];
 
-        if (isset($filters['puzzleDate'])) {
-            $body['puzzleDate'] = $filters['puzzleDate'];
+        if (isset($filters["puzzleDate"])) {
+            $model["puzzleDate"] = $filters["puzzleDate"];
         }
 
-        if (isset($filters['puzzleDateFrom'])) {
-            $body['puzzleDateFrom'] = $filters['puzzleDateFrom'];
+        if (isset($filters["puzzleDateFrom"])) {
+            $model["puzzleDateFrom"] = $filters["puzzleDateFrom"];
         }
 
-        if (isset($filters['puzzleDateTo'])) {
-            $body['puzzleDateTo'] = $filters['puzzleDateTo'];
+        if (isset($filters["puzzleDateTo"])) {
+            $model["puzzleDateTo"] = $filters["puzzleDateTo"];
         }
 
-        if (isset($filters['puzzleTypes']) && is_array($filters['puzzleTypes'])) {
-            $body['puzzleTypes'] = $filters['puzzleTypes'];
+        if (
+            isset($filters["puzzleTypes"]) &&
+            is_array($filters["puzzleTypes"])
+        ) {
+            $model["puzzleTypes"] = $filters["puzzleTypes"];
         }
 
-        if (isset($filters['puzzleNames']) && is_array($filters['puzzleNames'])) {
-            $body['puzzleNames'] = $filters['puzzleNames'];
+        if (
+            isset($filters["puzzleNames"]) &&
+            is_array($filters["puzzleNames"])
+        ) {
+            $model["puzzleNames"] = $filters["puzzleNames"];
         }
 
-        return $this->httpClient->post('/api/Puzzle/collect', $body);
+        // Wrap the model in a "model" property as required by the .NET API
+        $body = ["model" => $model];
+
+        return $this->httpClient->post("/api/Puzzle/collect", $body);
     }
 
     /**
@@ -82,7 +91,6 @@ class PuzzleClient
      */
     public function dictionary()
     {
-        return $this->httpClient->get('/api/Puzzle/dictionary');
+        return $this->httpClient->get("/api/Puzzle/dictionary");
     }
 }
-

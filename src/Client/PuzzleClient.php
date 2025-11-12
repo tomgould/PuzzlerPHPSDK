@@ -44,36 +44,39 @@ class PuzzleClient
      */
     public function collect(array $filters = [])
     {
-        $model = [];
+        $body = [];
 
         if (isset($filters["puzzleDate"])) {
-            $model["puzzleDate"] = $filters["puzzleDate"];
+            $body["puzzleDate"] = $filters["puzzleDate"];
         }
 
         if (isset($filters["puzzleDateFrom"])) {
-            $model["puzzleDateFrom"] = $filters["puzzleDateFrom"];
+            $body["puzzleDateFrom"] = $filters["puzzleDateFrom"];
         }
 
         if (isset($filters["puzzleDateTo"])) {
-            $model["puzzleDateTo"] = $filters["puzzleDateTo"];
+            $body["puzzleDateTo"] = $filters["puzzleDateTo"];
         }
 
         if (
             isset($filters["puzzleTypes"]) &&
             is_array($filters["puzzleTypes"])
         ) {
-            $model["puzzleTypes"] = $filters["puzzleTypes"];
+            $body["puzzleTypes"] = $filters["puzzleTypes"];
         }
 
         if (
             isset($filters["puzzleNames"]) &&
             is_array($filters["puzzleNames"])
         ) {
-            $model["puzzleNames"] = $filters["puzzleNames"];
+            $body["puzzleNames"] = $filters["puzzleNames"];
         }
 
-        // Wrap the model in a "model" property as required by the .NET API
-        $body = ["model" => $model];
+        // If no filters provided, wrap in "model" property as required by API
+        // If filters are provided, send them directly without wrapping
+        if (empty($body)) {
+            $body = ["model" => []];
+        }
 
         return $this->httpClient->post("/api/Puzzle/collect", $body);
     }

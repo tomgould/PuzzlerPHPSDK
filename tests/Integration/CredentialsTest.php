@@ -55,7 +55,11 @@ class CredentialsTest extends TestCase
 
     public function testInvalidCredentialsFail()
     {
-        $client = new PuzzlerClient('invalid', 'invalid', 'invalid');
+        if (empty(getenv('PUZZLER_CLIENT_ID'))) {
+            $this->markTestSkipped('Live API tests are skipped unless PUZZLER_CLIENT_ID is set.');
+        }
+
+        $client = new PuzzlerClient('invalid', 'invalid', 'invalid', getenv('PUZZLER_BASE_URL') ?: 'https://rest-api.puzzlerdigital.uk');
 
         $this->expectException(AuthenticationException::class);
 

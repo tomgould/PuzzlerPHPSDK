@@ -322,9 +322,9 @@ Exception
 **Problem:** You're filtering by a specific date but getting an empty array back, even though puzzles should exist.
 
 **Possible causes:**
-1. **Date is outside the bundle range** - The API only returns puzzles from the "latest bundle". If you request a date that's not in the current bundle, you'll get no results.
-2. **Date format is incorrect** - Ensure you're using YYYY-MM-DD format (e.g., '2025-11-12', not '11/12/2025')
-3. **No puzzles published for that date** - Some dates may not have puzzles available
+1. Date is outside the bundle range: The API only returns puzzles from the "latest bundle". If you request a date that's not in the current bundle, you'll get no results.
+2. Date format is incorrect: Ensure you're using YYYY-MM-DD format (e.g., '2025-11-12', not '11/12/2025')
+3. No puzzles published for that date: Some dates may not have puzzles available
 
 **Solution:**
 ```php
@@ -376,8 +376,8 @@ foreach ($todaysPuzzles as $puzzle) {
 **Problem:** Getting 401 Authentication Failed errors.
 
 **Possible causes:**
-1. **Incorrect credentials** - Double-check your Client ID, API Key, and Secret Key
-2. **Clock skew** - The API signature is time-sensitive (valid for 5 minutes). Ensure your server's clock is synchronized
+1. Incorrect credentials: Double-check your Client ID, API Key, and Secret Key
+2. Clock skew: The API signature is time-sensitive (valid for 5 minutes). Ensure your server's clock is synchronized
 
 **Solution:**
 ```php
@@ -413,7 +413,7 @@ echo "Server time: " . date('Y-m-d H:i:s') . " UTC: " . gmdate('Y-m-d H:i:s') . 
 ```php
 // This will return ALL Sudoku puzzles, ignoring the name filter
 $puzzles = $client->puzzle()->collect([
-    'puzzleTypes' => ['SU'],  // ❌ Don't include 'SU' here
+    'puzzleTypes' => ['SU'],  // Do not include 'SU' here
     'puzzleNames' => ['Easy Sudoku']
 ]);
 ```
@@ -422,12 +422,12 @@ $puzzles = $client->puzzle()->collect([
 ```php
 // This will return ONLY "Easy Sudoku" puzzles
 $puzzles = $client->puzzle()->collect([
-    'puzzleNames' => ['Easy Sudoku']  // ✅ Omit 'SU' from puzzleTypes
+    'puzzleNames' => ['Easy Sudoku']  // Omit 'SU' from puzzleTypes
 ]);
 
 // Or combine with other types:
 $puzzles = $client->puzzle()->collect([
-    'puzzleTypes' => ['XW', 'WS'],  // ✅ 'SU' is NOT included
+    'puzzleTypes' => ['XW', 'WS'],  // 'SU' is not included
     'puzzleNames' => ['Easy Sudoku']
 ]);
 ```
@@ -467,7 +467,7 @@ echo "Filtered results: " . count($filtered) . "\n";
 
 The Puzzler API has an unusual requirement for the request body format:
 
-- **When filters are provided:** Send them directly in the request body
+- When filters are provided: Send them directly in the request body
   ```json
   {
     "puzzleDate": "2025-11-12",
@@ -475,7 +475,7 @@ The Puzzler API has an unusual requirement for the request body format:
   }
   ```
 
-- **When NO filters are provided:** The body must be wrapped in a "model" property
+- When no filters are provided: The body must be wrapped in a "model" property
   ```json
   {
     "model": {}

@@ -100,6 +100,30 @@ class HttpClient
         $timestamp = time();
         $headers = $this->buildHeaders($timestamp);
 
+        $jsonBody = $body !== null ? json_encode($body) : null;
+
+        list($response, $httpCode, $contentType, $error) = $this->send($method, $url, $headers, $jsonBody);
+
+        if ($error) {
+            throw new PuzzlerException('cURL error: ' . $error);
+        }
+
+        return $this->handleResponse($response, $httpCode, $contentType);
+    }
+
+    /**
+     * Perform the transport-level request with cURL
+     *
+     * Kept separate so tests can replace the network layer.
+     *
+     * @param string $method HTTP method
+     * @param string $url Full request URL
+     * @param array $headers Header strings
+     * @param string|null $jsonBody Encoded request body
+     * @return array [response body|false, HTTP status, content type, cURL error]
+     */
+    protected function send($method, $url, array $headers, $jsonBody)
+    {
         $ch = curl_init();
 
         curl_setopt($ch, CURLOPT_URL, $url);
@@ -107,8 +131,7 @@ class HttpClient
         curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
         curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);
 
-        if ($body !== null) {
-            $jsonBody = json_encode($body);
+        if ($jsonBody !== null) {
             curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonBody);
         }
 
@@ -119,11 +142,7 @@ class HttpClient
 
         curl_close($ch);
 
-        if ($error) {
-            throw new PuzzlerException('cURL error: ' . $error);
-        }
-
-        return $this->handleResponse($response, $httpCode, $contentType);
+        return [$response, $httpCode, $contentType, $error];
     }
 
     /**

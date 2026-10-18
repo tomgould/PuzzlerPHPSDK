@@ -1,6 +1,8 @@
 # PuzzlerPHPSDK
 
-A professional PHP SDK for the Puzzler Media REST API.
+A PHP SDK for the Puzzler Media REST API.
+
+> **Unofficial client.** This library is not affiliated with or endorsed by Puzzler Media. You need your own API credentials (client ID, API key and secret key), which are issued by Puzzler.
 
 [![PHP Version](https://img.shields.io/badge/php-%3E%3D7.4-blue.svg)](https://php.net/)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
@@ -39,7 +41,7 @@ $client = new PuzzlerClient(
 // Check API health
 try {
     $health = $client->health()->check();
-    echo $health; // "I am healthly!"
+    echo $health; // the API's health message
 } catch (PuzzlerException $e) {
     echo "Error: " . $e->getMessage();
 }
@@ -379,6 +381,9 @@ foreach ($todaysPuzzles as $puzzle) {
 
 **Solution:**
 ```php
+use TomGould\PuzzlerPHPSDK\PuzzlerClient;
+use TomGould\PuzzlerPHPSDK\Exception\AuthenticationException;
+
 // Verify your credentials are correct
 $client = new PuzzlerClient(
     'YOUR_CLIENT_ID',

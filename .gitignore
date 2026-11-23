@@ -1,0 +1,48 @@
+# Composer
+/vendor/
+composer.lock
+composer.phar
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# PHPUnit
+.phpunit.result.cache
+/phpunit.xml
+phpunit.xml
+
+# Coverage
+/coverage/
+clover.xml
+coverage.xml
+*.coverage
+
+# Build
+/build/
+/dist/
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Logs
+*.log
+
+# Environment & Credentials
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+
+# Test files
+/tests/temp/
+/tests/output/
+
+# PHP
+*.cache
+

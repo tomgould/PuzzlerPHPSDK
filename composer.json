@@ -1,0 +1,35 @@
+{
+    "name": "tomgould/puzzlerphpsdk",
+    "description": "PHP SDK for Puzzler Media REST API",
+    "type": "library",
+    "keywords": ["puzzler", "api", "sdk", "client", "puzzle", "games"],
+    "homepage": "https://github.com/tomgould/PuzzlerPHPSDK",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Tom Gould",
+            "homepage": "https://github.com/tomgould"
+        }
+    ],
+    "require": {
+        "php": ">=7.4",
+        "ext-curl": "*",
+        "ext-json": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "TomGould\\PuzzlerPHPSDK\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "TomGould\\PuzzlerPHPSDK\\Tests\\": "tests/"
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
+

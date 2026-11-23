@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.1.2
+
+- Published on a new single-commit history. The 1.1.1 tag pointed at a commit that is no longer in the repository, so this release replaces it on Packagist.
+- README wording tidied.
+- The live credentials test no longer prints any part of the client ID or API key.
+
 ## 1.1.1
 
 - `collect()` with no filters sends `{"model":{}}`, as the API and the README expect, instead of `{"model":[]}`.
